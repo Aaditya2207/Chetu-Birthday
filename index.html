@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Image Website</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://lh3.googleusercontent.com/pw/AP1GczN3TVzgXUETrBKxFk1Gnaqidl1SyFvKQVdHPM1L_do7mHM8Hayag7KPL7-xkni3nzSL8YOYRsyTtIVcxh4M8iTu3S8HEG2ln-5JauWR-KRU902ioDU=w2400");
+        background-size: cover;
+        background-repeat: no-repeat;
+        filter: blur(5px); /* Adjust the blur amount as needed */
+        z-index: -1;
+      }
+      .login-container {
+        width: 250px;
+        height: 227px;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+      .login-container h2 {
+        margin-bottom: 20px;
+      }
+      .login-form input {
+        width: 91%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: none;
+      }
+      .login-form button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
+      .timer {
+        position: absolute;
+        top: 33px;
+        right: 38px;
+        font-size: 38px;
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timer" id="countdown"></div>
+    <div class="login-container">
+      <h2>Enter the correct details 😁</h2>
+      <form class="login-form" id="loginForm">
+        <div>
+          <input type="text" id="userId" placeholder="Login ID" required />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <a href="#" onclick="togglePasswordVisibility()">Show Password</a>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <script>
+      // Target date and time (May 7, 2024, 00:00:00 UTC)
+      const targetDate = new Date("2024-05-07T00:00:00Z");
+
+      // Function to update the countdown timer
+      function updateTimer() {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        // Calculate remaining days, hours, minutes, and seconds
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        // Update the timer display
+        const timerElement = document.getElementById("countdown");
+        timerElement.textContent = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      // Initial call to update the timer
+      updateTimer();
+
+      // Update the timer every second
+      setInterval(updateTimer, 1000);
+
+      function togglePasswordVisibility() {
+        const passwordInput = document.getElementById("password");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+        } else {
+          passwordInput.type = "password";
+        }
+      }
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission behavior
+
+          // Get the values entered by the user
+          const userId = document.getElementById("userId").value;
+          const password = document.getElementById("password").value;
+
+          // Check if the credentials are correct
+          if (userId === "2207" && password === "happiestbirthdaychetu") {
+            window.location.href = "index2.html"; // Redirect to Chetu Birthday2 page
+          } else {
+            alert("User ID or password is wrong!"); // Show an alert for wrong credentials
+          }
+        });
+    </script>
+  </body>
+</html>
